@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+
 export default function App() {
   const [day, setDay] = useState("Monday");
   const prevDay = usePrevious(day);
@@ -32,5 +33,9 @@ export default function App() {
   );
 }
 function usePrevious(val) {
-
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = val;
+  }, [val]);
+  return ref.current;
 }
